@@ -1,13 +1,18 @@
 @mixin label{
-    line-height:35px;
+    line-height:25px;
     font-weight: 400;
+    font-size:13px;
+}
+@mixin desc{
+    line-height:20px;
+    font-size:12px;
+    color:#5F5D5D;
 }
 @mixin input{
     box-sizing: border-box;
     border:0;
     border-bottom: 1px solid #D7D7D7;
-    padding:0 5px 0 5px;
-    height:40px;
+    height:30px;
     width:100%;
     outline: none;
 }
@@ -20,5 +25,8 @@
         input {
             @include input;
         }
+    }
+    .form-text-desc{
+        @include desc;
     }
 }
