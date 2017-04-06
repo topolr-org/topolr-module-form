@@ -12,10 +12,26 @@ Module({
         disabled:false,
         required:false
     },
-    setValue:function () {},
-    getValue:function () {},
-    check:function () {},
-    reset:function () {},
+    value:null,
+    customCheck:null,
+    setValue:function (a) {
+        this.value = a;
+        return this;
+    },
+    getValue:function () {
+        return this.value;
+    },
+    check:function () {
+        if (this.customCheck) {
+            return this.customCheck.call(this);
+        } else {
+            return true;
+        }
+    },
+    reset:function () {
+        this.setValue(this.value);
+        return this;
+    },
     clear:function () {}
 });
 Module({
