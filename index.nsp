@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="<%=request.getHttpPath();%>node_modules/topolr/topolr.js" type="text/javascript"></script>
+    <script>
+        App({
+    "sitePath": "<%=request.getHttpPath();%>",
+    "basePath": "com/dist/",
+    "title": "form",
+    "description": "form of topolr",
+    "boot": "form.test.boot",
+    "map": {
+        "d": true,
+        "m": {
+            "p": {
+                "util.file": "07144b2f98",
+                "util.images": "03911758e8",
+                "util.router": "3c3afc23f8",
+                "util.uikit": "1bd99ab1fb",
+                "form.base": "9b89eb6a3a",
+                "form.test": "4209933fa2"
+            },
+            "c": {
+                "util.style.images": "80c5adaef4",
+                "util.style.uikit": "f2024b2adc",
+                "form.style.formstyle": "6506adb662"
+            },
+            "t": {
+                "util.template.imagestemp": "7a615cee41",
+                "form.template.form": "8ee3af089d"
+            }
+        },
+        "c": {
+            "form-test-c1": {
+                "p": [
+                    "form.test",
+                    "form.base"
+                ],
+                "t": [
+                    "form.template.form"
+                ],
+                "c": [
+                    "form.style.formstyle"
+                ]
+            }
+        },
+        "id": "9bcc62893090cf71a77c66d3564a0621"
+    }
+}).boot();
+    </script>
+</head>
+<body><%=data.body;%></body>
+</html>

@@ -9,14 +9,15 @@
     padding:0 5px 0 5px;
     height:40px;
     width:100%;
+    outline: none;
 }
-.form{
-    .form-text{
-        margin-bottom: 10px;
-        .form-text-label{
-            @include label;
-        }
-        .form-text-input{
+.form-text{
+    margin-bottom: 10px;
+    .form-text-label{
+        @include label;
+    }
+    .form-text-input{
+        input {
             @include input;
         }
     }
