@@ -1,0 +1,23 @@
+@mixin label{
+    line-height:35px;
+    font-weight: 400;
+}
+@mixin input{
+    box-sizing: border-box;
+    border:0;
+    border-bottom: 1px solid #D7D7D7;
+    padding:0 5px 0 5px;
+    height:40px;
+    width:100%;
+}
+.form{
+    .form-text{
+        margin-bottom: 10px;
+        .form-text-label{
+            @include label;
+        }
+        .form-text-input{
+            @include input;
+        }
+    }
+}
