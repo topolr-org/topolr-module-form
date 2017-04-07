@@ -2,7 +2,6 @@
  * @packet form.base;
  * @template form.template.form;
  * @css form.style.formstyle;
- * @require form.service.formservice;
  */
 Module({
     name:"field",
@@ -32,7 +31,9 @@ Module({
     reset:function () {},
     clear:function () {},
     disabled:function () {},
-    undisabled:function () {}
+    undisabled:function () {},
+    showError:function () {},
+    hideError:function () {}
 });
 Module({
     name:"fieldview",
@@ -47,6 +48,7 @@ Module({
     extend:"viewgroup",
     layout:"@form.form",
     option:{
+        action:"",
         fields:[
             {type:"",option:""}
         ]
@@ -174,7 +176,23 @@ Module({
             $.extend(child.option, ops.option);
         }
     },
+    onbeforesubmit:function (a) {
+        return a;
+    },
+    showLoading:function () {},
+    hideLoading:function (result) {},
     submit:function () {
+        this.showLoading();
+        return this.check().scope(this).then(function () {
+            return this.getValue();
+        }).then(function (val) {
+            var val=this.onbeforesubmit(val);
+            return this.postRequest(this.option.action,val);
+        }).then(function () {
+            this.hideLoading(true);
+        },function () {
+            this.hideLoading(false);
+        });
     }
 });
 
@@ -186,9 +204,15 @@ Module({
     option:{
         inputType:"text",
         placeHolder:"",
-        reg:"",
-        maxLen:40,
-        minLen:1
+        regular:{
+            reg:"",
+            errorMsg:""
+        },
+        length:{
+            max:40,
+            min:1,
+            errorMsg:""
+        }
     },
     init:function () {
         this.render(this.option);
@@ -201,27 +225,34 @@ Module({
         return this.finders("input").val();
     },
     check:function () {
+        var r=true;
         if(this.isRequired()){
             if(this.checkLength()){
-                return this.checkReg();
+                r=this.checkReg();
+                if(r===false){
+                    this.showError(this.option.regular.errorMsg);
+                }
             }else{
-                return false;
+                r=false;
+                this.showError(this.option.length.errorMsg);
             }
-        }else{
-            return true;
         }
+        if(r===true){
+            this.hideError();
+        }
+        return r;
     },
     checkLength:function () {
-        var val=this.getValue();
-        return val>=this.option.minLen&&val<=this.option.maxLen
+        var val=this.getValue(),max=this.option.length,max,min=this.option.length.min;
+        return val>=min&&val<=max;
     },
     checkReg:function () {
-        if(this.option.reg) {
+        if(this.option.regular.reg) {
             var reg=null;
-            if ($.is.isString(this.option.reg)) {
-                reg=new RegExp(this.option.reg);
-            }else if(this.option.reg instanceof RegExp){
-                reg=this.option.reg;
+            if ($.is.isString(this.option.regular.reg)) {
+                reg=new RegExp(this.option.regular.reg);
+            }else if(this.option.regular.reg instanceof RegExp){
+                reg=this.option.regular.reg;
             }
             if(reg){
                 return reg.text(this.getValue());
@@ -245,14 +276,22 @@ Module({
     undisabled:function () {
         this.finders("input").get(0).disable=false;
         return this;
+    },
+    showError:function (msg) {
+        this.dom.addClass("form-error");
+        this.finders("tip").html(msg);
+        return this;
+    },
+    hideError:function () {
+        this.dom.removeClass("form-error");
+        return this;
     }
 });
 Module({
     name:"textarea",
-    extend:"@.fieldview",
+    extend:"@.text",
     template:"@form.textarea",
     className:"form-textarea",
-    services:{"service":"@formservice.textareaservice"},
     autodom:true,
     option:{
         placeHolder:"",
@@ -262,17 +301,42 @@ Module({
         resizeable:false
     },
     init:function () {
-        this.getService("service").action("set",$.extend({},this.option,{
-            num:0
-        }));
+        this._data=$.extend({
+            num:this.option.value?this.option.value.length:0
+        },this.option);
+        this.render(this._data);
     },
     find_input:function (dom) {
         var ths=this;
         dom.bind("keyup",function () {
-            ths.getService("service").action("val",$(this).val());
+            ths._data.num=$(this).val().length;
+            ths.update(ths._data);
         });
     }
 });
+Module({
+    name:"select",
+    extend:"fieldview",
+    template:"@form.select",
+    className:"form-select",
+    autodom:true,
+    option:{
+        url:"",
+        targetName:"",
+        parameterName:"",
+        options:[{name:"",value:""}]
+    },
+    init:function () {
+        this.render(this.option);
+    }
+});
+Module({
+    name:"checkbox"
+});
+Module({
+    name:'radio'
+});
+
 
 Module({
     name:'test',

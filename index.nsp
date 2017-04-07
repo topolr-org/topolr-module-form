@@ -30,8 +30,7 @@
                 "util.images": "03911758e8",
                 "util.router": "3c3afc23f8",
                 "util.uikit": "1bd99ab1fb",
-                "form.base": "0dae5a723c",
-                "form.service.formservice": "ebea85b3c4",
+                "form.base": "ac91ea0c3b",
                 "form.test": "bc8a55db18"
             },
             "c": {
@@ -41,15 +40,14 @@
             },
             "t": {
                 "util.template.imagestemp": "7a615cee41",
-                "form.template.form": "309b3ab36a"
+                "form.template.form": "757d9ba620"
             }
         },
         "c": {
             "form-test-c1": {
                 "p": [
                     "form.test",
-                    "form.base",
-                    "form.service.formservice"
+                    "form.base"
                 ],
                 "t": [
                     "form.template.form"
