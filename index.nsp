@@ -30,24 +30,26 @@
                 "util.images": "03911758e8",
                 "util.router": "3c3afc23f8",
                 "util.uikit": "1bd99ab1fb",
-                "form.base": "9b1c076d6d",
-                "form.test": "1db19d2094"
+                "form.base": "0dae5a723c",
+                "form.service.formservice": "ebea85b3c4",
+                "form.test": "bc8a55db18"
             },
             "c": {
                 "util.style.images": "80c5adaef4",
                 "util.style.uikit": "f2024b2adc",
-                "form.style.formstyle": "981441e630"
+                "form.style.formstyle": "92e21fbaef"
             },
             "t": {
                 "util.template.imagestemp": "7a615cee41",
-                "form.template.form": "5b8de7938a"
+                "form.template.form": "309b3ab36a"
             }
         },
         "c": {
             "form-test-c1": {
                 "p": [
                     "form.test",
-                    "form.base"
+                    "form.base",
+                    "form.service.formservice"
                 ],
                 "t": [
                     "form.template.form"

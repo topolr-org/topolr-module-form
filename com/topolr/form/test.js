@@ -19,6 +19,10 @@ Option({
                             {type:"@base.text",option:{
                                 name:"text2",
                                 label:"text2"
+                            }},
+                            {type:"@base.textarea",option:{
+                                name:"text4",
+                                label:"text4"
                             }}
                         ]
                     },

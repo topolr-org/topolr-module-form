@@ -30,3 +30,23 @@
         @include desc;
     }
 }
+.form-textarea{
+    margin-bottom: 10px;
+    .form-textarea-label{
+        @include label;
+    }
+    .form-textarea-input{
+        textarea {
+            @include input;
+            min-height:100px;
+        }
+    }
+    .form-textarea-num{
+        font-size:12px;
+        line-height:15px;
+        text-align:right;
+    }
+    .form-textarea-desc{
+        @include desc;
+    }
+}

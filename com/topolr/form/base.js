@@ -2,6 +2,7 @@
  * @packet form.base;
  * @template form.template.form;
  * @css form.style.formstyle;
+ * @require form.service.formservice;
  */
 Module({
     name:"field",
@@ -244,6 +245,32 @@ Module({
     undisabled:function () {
         this.finders("input").get(0).disable=false;
         return this;
+    }
+});
+Module({
+    name:"textarea",
+    extend:"@.fieldview",
+    template:"@form.textarea",
+    className:"form-textarea",
+    services:{"service":"@formservice.textareaservice"},
+    autodom:true,
+    option:{
+        placeHolder:"",
+        maxLen:100,
+        minLen:1,
+        showNum:true,
+        resizeable:false
+    },
+    init:function () {
+        this.getService("service").action("set",$.extend({},this.option,{
+            num:0
+        }));
+    },
+    find_input:function (dom) {
+        var ths=this;
+        dom.bind("keyup",function () {
+            ths.getService("service").action("val",$(this).val());
+        });
     }
 });
 
