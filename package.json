@@ -24,6 +24,6 @@
   "homepage": "https://github.com/topolr/topolr-module-form#readme",
   "dependencies": {
     "topolr": "^1.4.1",
-    "topolr-module-util": "0.0.2"
+    "topolr-module-util": "0.0.3"
   }
 }
