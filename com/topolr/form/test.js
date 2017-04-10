@@ -23,6 +23,46 @@ Option({
                             {type:"@base.textarea",option:{
                                 name:"text4",
                                 label:"text4"
+                            }},
+                            {type:"@base.select",option:{
+                                name:"text5",
+                                label:"text5",
+                                url:sitePath+"mock/select",
+                                target:"text6",
+                                parameterName:"next",
+                                options:[
+                                    {name:"aa",value:"aa"},
+                                    {name:"ee",value:"ee"}
+                                ]
+                            }},
+                            {type:"@base.select",option:{
+                                name:"text6",
+                                label:"text6",
+                                parameterName:"next",
+                                url:sitePath+"mock/select",
+                                options:[]
+                            }},
+                            {type:"@base.checkbox",option:{
+                                name:"text6",
+                                label:"text6",
+                                checkboxs:[
+                                    {name:"aa",value:"aa"},
+                                    {name:"aa",value:"aa"},
+                                    {name:"aa",value:"aa"},
+                                    {name:"aa",value:"aa"},
+                                    {name:"aa",value:"aa"}
+                                ]
+                            }},
+                            {type:"@base.radio",option:{
+                                name:"text7",
+                                label:"text7",
+                                radios:[
+                                    {name:"aa",value:"aa"},
+                                    {name:"aa",value:"aa"},
+                                    {name:"aa",value:"aa"},
+                                    {name:"aa",value:"aa"},
+                                    {name:"aa",value:"aa"}
+                                ]
                             }}
                         ]
                     },

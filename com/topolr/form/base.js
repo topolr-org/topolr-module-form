@@ -2,6 +2,7 @@
  * @packet form.base;
  * @template form.template.form;
  * @css form.style.formstyle;
+ * @require form.service.formservice;
  */
 Module({
     name:"field",
@@ -316,25 +317,119 @@ Module({
 });
 Module({
     name:"select",
-    extend:"fieldview",
+    extend:"@.fieldview",
     template:"@form.select",
     className:"form-select",
     autodom:true,
+    services:{"select":"@formservice.selectservice"},
     option:{
         url:"",
         targetName:"",
         parameterName:"",
-        options:[{name:"",value:""}]
+        parameterVal:"",
+        options:[{name:"",value:""}],
+        errorMes:""
     },
     init:function () {
-        this.render(this.option);
+        this.getService("select").action("set",this.option);
+    },
+    find_select:function (dom) {
+        var ths=this;
+        dom.bind("change",function () {
+            ths.getService("select").action("setvalue",dom.val());
+        });
+    },
+    setValue:function (val) {
+        this.getService("select").action("resetvalue",val);
+    },
+    getValue:function () {
+        return this.getService("select").action("getvalue");
+    },
+    check:function () {
+        if(this.isRequired()){
+            var e=this.getValue();
+            if(e){
+                this.hideError();
+                return true;
+            }else{
+                this.showError(this.option.errorMes);
+            }
+        }else{
+            return true;
+        }
+    },
+    reset:function () {
+        this.getService("select").action("resetvalue",this.option.value);
+    },
+    clear:function () {
+        this.getService("select").action("resetvalue","");
+    },
+    disabled:function () {},
+    undisabled:function () {},
+    showError:function () {},
+    hideError:function () {},
+    service_reset:function (data) {
+        if(data){
+            this.update(data);
+        }
+        this.triggerNext();
+    },
+    triggerNext:function () {
+        var targetName=this.option.target;
+        if(targetName!==this.getName()&&this.parentView&&this.parentView.typeOf&&this.parentView.typeOf("@.form")){
+            var a=this.parentView.getFieldByName(targetName);
+            if(a){
+                a.updateSelect&&a.updateSelect(this.getValue());
+            }
+        }
+    },
+    updateSelect:function (val) {
+        this.getService("select").trigger("refresh",val);
     }
 });
 Module({
-    name:"checkbox"
+    name:"checkbox",
+    extend:"@.fieldview",
+    template:"@form.checkbox",
+    className:"form-checkbox",
+    autodom:true,
+    option:{
+        checkboxs:[{name:"",value:""}]
+    },
+    init:function () {
+        this.render(this.option);
+    },
+    setValue:function () {},
+    getValue:function () {},
+    check:function () {},
+    reset:function () {},
+    clear:function () {},
+    disabled:function () {},
+    undisabled:function () {},
+    showError:function () {},
+    hideError:function () {}
 });
 Module({
-    name:'radio'
+    name:'radio',
+    extend:"@.fieldview",
+    template:"@form.radio",
+    className:"form-radio",
+    autodom:true,
+    option:{
+        radios:[{name:"",value:""}]
+    },
+    init:function () {
+        this.render(this.option);
+    },
+    setValue:function () {},
+    getValue:function () {},
+    check:function () {},
+    reset:function () {},
+    clear:function () {},
+    disabled:function () {},
+    undisabled:function () {},
+    showError:function () {},
+    hideError:function () {}
 });
 
 

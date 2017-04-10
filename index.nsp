@@ -30,30 +30,55 @@
                 "util.images": "03911758e8",
                 "util.router": "3c3afc23f8",
                 "util.uikit": "1bd99ab1fb",
-                "form.base": "ac91ea0c3b",
-                "form.test": "bc8a55db18"
+                "form.base": "b5cc1bcbbc",
+                "form.test": "38a3265c12",
+                "form.service.formservice": "0bcbe56a04",
+                "form.file": "5284a753a7",
+                "form.image": "05a0072862"
             },
             "c": {
                 "util.style.images": "80c5adaef4",
                 "util.style.uikit": "f2024b2adc",
-                "form.style.formstyle": "92e21fbaef"
+                "form.style.formstyle": "64c88397c2",
+                "form.style.filestyle": "95d4b9ae53"
             },
             "t": {
                 "util.template.imagestemp": "7a615cee41",
-                "form.template.form": "757d9ba620"
+                "form.template.form": "d5feb20373",
+                "form.template.filetemp": "473618950b"
             }
         },
         "c": {
             "form-test-c1": {
                 "p": [
                     "form.test",
-                    "form.base"
+                    "form.base",
+                    "form.service.formservice"
                 ],
                 "t": [
                     "form.template.form"
                 ],
                 "c": [
                     "form.style.formstyle"
+                ]
+            },
+            "form-file-c1": {
+                "p": [
+                    "form.file"
+                ],
+                "t": [
+                    "form.template.filetemp"
+                ],
+                "c": [
+                    "form.style.filestyle"
+                ]
+            },
+            "form-image-c1": {
+                "p": [
+                    "form.image"
+                ],
+                "t": [
+                    "form.template.imagetemp"
                 ]
             }
         },

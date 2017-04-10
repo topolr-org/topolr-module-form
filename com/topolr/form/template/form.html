@@ -28,7 +28,11 @@
 <div class="form-select-input">
     <select data-find="select">
     <%for(var i=0;i<data.options.length;i++){%>
+        <%if(data.value===data.options[i].value){%>
+        <option value="<%=data.options[i].value;%>" selected="true"><%=data.options[i].name;%></option>
+        <%}else{%>
         <option value="<%=data.options[i].value;%>"><%=data.options[i].name;%></option>
+        <%}%>
     <%}%>
     </select>
 </div>
@@ -36,3 +40,32 @@
 <div class="form-select-desc"><%=data.desc;%></div>
 <%}%>
 <div class="form-select-errortip" data-find="tip"></div>
+<!--[checkbox]-->
+<div class="form-checkbox-label"><%=data.label;%></div>
+<div class="form-checkbox-input">
+    <%for(var i=0;i<data.checkboxs.length;i++){%>
+    <label class="form-checkbox-input-con" data-group="checkbox" @cache(data.checkboxs[i])>
+        <div class="form-checkbox-input-dot"><input data-groupi="input" type="checkbox"/></div>
+        <div class="form-checkbox-input-name"><%=data.checkboxs[i].name;%></div>
+    </label>
+    <%}%>
+</div>
+<%if(data.desc){%>
+<div class="form-checkbox-desc"><%=data.desc;%></div>
+<%}%>
+<div class="form-checkbox-errortip" data-find="tip"></div>
+<!--[radio]-->
+<div class="form-radio-label"><%=data.label;%></div>
+<div class="form-radio-input">
+    <%var name=Math.random().toString(36).slice(2, 8);%>
+    <%for(var i=0;i<data.radios.length;i++){%>
+    <label class="form-radio-input-con" data-group="radio" @cache(data.radios[i])>
+        <div class="form-radio-input-dot"><input data-groupi="input" type="radio" name="<%=name;%>"/></div>
+        <div class="form-radio-input-name"><%=data.radios[i].name;%></div>
+    </label>
+    <%}%>
+</div>
+<%if(data.desc){%>
+<div class="form-radio-desc"><%=data.desc;%></div>
+<%}%>
+<div class="form-radio-errortip" data-find="tip"></div>
