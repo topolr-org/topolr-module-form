@@ -11,5 +11,14 @@ Module({
     template:"@filetemp.fileuploader",
     option:{},
     init:function () {
-    }
+    },
+    setValue:function () {},
+    getValue:function () {},
+    check:function () {},
+    reset:function () {},
+    clear:function () {},
+    disabled:function () {},
+    undisabled:function () {},
+    showError:function () {},
+    hideError:function () {}
 });

@@ -11,5 +11,32 @@ Module({
     template:"@imagetemp.imageuploader",
     option:{},
     init:function () {
-    }
+    },
+    setValue:function () {},
+    getValue:function () {},
+    check:function () {},
+    reset:function () {},
+    clear:function () {},
+    disabled:function () {},
+    undisabled:function () {},
+    showError:function () {},
+    hideError:function () {}
+});
+Module({
+    name:"multiimageuploader",
+    extend:"@base.fieldgroup",
+    className:"form-multiimageuploader",
+    template:"@imagetemp.multiimageuploader",
+    option:{},
+    init:function () {
+    },
+    setValue:function () {},
+    getValue:function () {},
+    check:function () {},
+    reset:function () {},
+    clear:function () {},
+    disabled:function () {},
+    undisabled:function () {},
+    showError:function () {},
+    hideError:function () {}
 });
