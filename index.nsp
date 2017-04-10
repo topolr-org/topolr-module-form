@@ -26,40 +26,46 @@
         "d": true,
         "m": {
             "p": {
-                "util.file": "07144b2f98",
+                "util.file": "4631ae8650",
                 "util.images": "03911758e8",
                 "util.router": "3c3afc23f8",
                 "util.uikit": "1bd99ab1fb",
                 "form.base": "b5cc1bcbbc",
-                "form.test": "38a3265c12",
-                "form.service.formservice": "0bcbe56a04",
                 "form.file": "caf04f09c1",
-                "form.image": "f369193a50"
+                "form.image": "7f691c7b4c",
+                "form.service.formservice": "0bcbe56a04",
+                "form.test": "460f8708e1"
             },
             "c": {
                 "util.style.images": "80c5adaef4",
                 "util.style.uikit": "f2024b2adc",
+                "form.style.filestyle": "f4e60461e0",
                 "form.style.formstyle": "64c88397c2",
-                "form.style.filestyle": "95d4b9ae53"
+                "form.style.imagestyle": "d1985678f2"
             },
             "t": {
                 "util.template.imagestemp": "7a615cee41",
+                "form.template.filetemp": "473618950b",
                 "form.template.form": "d5feb20373",
-                "form.template.filetemp": "473618950b"
+                "form.template.imagetemp": "d900e56527"
             }
         },
         "c": {
-            "form-test-c1": {
+            "form-test-c2": {
                 "p": [
                     "form.test",
                     "form.base",
-                    "form.service.formservice"
+                    "form.service.formservice",
+                    "form.image",
+                    "util.file"
                 ],
                 "t": [
-                    "form.template.form"
+                    "form.template.form",
+                    "form.template.imagetemp"
                 ],
                 "c": [
-                    "form.style.formstyle"
+                    "form.style.formstyle",
+                    "form.style.imagestyle"
                 ]
             },
             "form-file-c1": {
@@ -71,14 +77,6 @@
                 ],
                 "c": [
                     "form.style.filestyle"
-                ]
-            },
-            "form-image-c1": {
-                "p": [
-                    "form.image"
-                ],
-                "t": [
-                    "form.template.imagetemp"
                 ]
             }
         },

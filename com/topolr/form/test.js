@@ -1,6 +1,7 @@
 /**
  * @packet form.test;
  * @require form.base;
+ * @require form.image;
  */
 Option({
     name:"boot",
@@ -63,6 +64,10 @@ Option({
                                     {name:"aa",value:"aa"},
                                     {name:"aa",value:"aa"}
                                 ]
+                            }},
+                            {type:"@image.imageuploader",option:{
+                                name:"text7",
+                                label:"text7"
                             }}
                         ]
                     },
