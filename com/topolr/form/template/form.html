@@ -26,7 +26,7 @@
 <!--[select]-->
 <div class="form-select-label"><%=data.label;%></div>
 <div class="form-select-input">
-    <select data-find="select">
+    <select data-find="select" data-bind="change:change">
     <%for(var i=0;i<data.options.length;i++){%>
         <%if(data.value===data.options[i].value){%>
         <option value="<%=data.options[i].value;%>" selected="true"><%=data.options[i].name;%></option>
