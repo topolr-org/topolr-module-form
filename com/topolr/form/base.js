@@ -331,13 +331,12 @@ Module({
         errorMes:""
     },
     init:function () {
+        this.render(this.option);
         this.getService("select").action("set",this.option);
     },
-    find_select:function (dom) {
-        var ths=this;
-        dom.bind("change",function () {
-            ths.getService("select").action("setvalue",dom.val());
-        });
+    bind_change:function (dom) {
+        this.getService("select").action("setvalue",dom.val());
+        this.triggerNext();
     },
     setValue:function (val) {
         this.getService("select").action("resetvalue",val);
@@ -372,10 +371,9 @@ Module({
         if(data){
             this.update(data);
         }
-        this.triggerNext();
     },
     triggerNext:function () {
-        var targetName=this.option.target;
+        var targetName=this.option.targetName;
         if(targetName!==this.getName()&&this.parentView&&this.parentView.typeOf&&this.parentView.typeOf("@.form")){
             var a=this.parentView.getFieldByName(targetName);
             if(a){
@@ -385,6 +383,10 @@ Module({
     },
     updateSelect:function (val) {
         this.getService("select").trigger("refresh",val);
+    },
+    onupdated:function () {
+        this.getService("select").action("setvalue",this.finders("select").val());
+        this.triggerNext();
     }
 });
 Module({

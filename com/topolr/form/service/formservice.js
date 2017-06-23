@@ -34,11 +34,9 @@ Module({
     },
     action_setvalue:function (val) {
         this.data.value=val;
-        this.trigger("reset",null);
     },
     action_resetvalue:function (val) {
         this.data.value=val;
-        this.trigger("reset",this.data);
     },
     service_refresh:function (val) {
         this.data.parameterVal=val;
