@@ -24,21 +24,21 @@
 <%}%>
 <div class="form-textarea-errortip" data-find="tip"></div>
 <!--[select]-->
-<div class="form-select-label"><%=data.label;%></div>
+<div class="form-select-label">{{data.label}}</div>
 <div class="form-select-input">
     <select data-find="select" data-bind="change:change">
-    <%for(var i=0;i<data.options.length;i++){%>
-        <%if(data.value===data.options[i].value){%>
-        <option value="<%=data.options[i].value;%>" selected="true"><%=data.options[i].name;%></option>
-        <%}else{%>
-        <option value="<%=data.options[i].value;%>"><%=data.options[i].name;%></option>
-        <%}%>
-    <%}%>
+        {{list data.options as item}}
+            {{if item.value===data.value}}
+            <option value="{{item.value}}" selected="true">{{item.name}}</option>
+            {{else}}
+            <option value="{{item.value}}">{{item.name}}</option>
+            {{/if}}
+        {{/list}}
     </select>
 </div>
-<%if(data.desc){%>
-<div class="form-select-desc"><%=data.desc;%></div>
-<%}%>
+{{if data.desc}}
+<div class="form-select-desc">{{data.desc}}</div>
+{{/if}}
 <div class="form-select-errortip" data-find="tip"></div>
 <!--[checkbox]-->
 <div class="form-checkbox-label"><%=data.label;%></div>

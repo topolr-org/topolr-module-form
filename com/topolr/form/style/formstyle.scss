@@ -16,6 +16,12 @@
     width:100%;
     outline: none;
 }
+@mixin errortip{
+    line-height:25px;
+    font-size: 12px;
+    color:palevioletred;
+    display: none;
+}
 .form-text{
     margin-bottom: 10px;
     .form-text-label{
@@ -28,6 +34,14 @@
     }
     .form-text-desc{
         @include desc;
+    }
+    .form-text-errortip{
+        @include errortip;
+    }
+    &.form-error{
+        .form-text-errortip{
+            display: block;
+        }
     }
 }
 .form-textarea{
@@ -49,6 +63,14 @@
     .form-textarea-desc{
         @include desc;
     }
+    .form-textarea-errortip{
+        @include errortip;
+    }
+    &.form-error{
+        .form-text-errortip{
+            display: block;
+        }
+    }
 }
 .form-select{
     margin-bottom: 10px;
@@ -67,6 +89,14 @@
     }
     .form-select-desc{
         @include desc;
+    }
+    .form-select-errortip{
+        @include errortip;
+    }
+    &.form-error{
+        .form-text-errortip{
+            display: block;
+        }
     }
 }
 .form-checkbox{
@@ -102,6 +132,14 @@
     .form-checkbox-desc{
         @include desc;
     }
+    .form-checkbox-errortip{
+        @include errortip;
+    }
+    &.form-error{
+        .form-text-errortip{
+            display: block;
+        }
+    }
 }
 .form-radio{
     margin-bottom: 10px;
@@ -135,5 +173,13 @@
     }
     .form-radio-desc{
         @include desc;
+    }
+    .form-radio-errortip{
+        @include errortip;
+    }
+    &.form-error{
+        .form-text-errortip{
+            display: block;
+        }
     }
 }

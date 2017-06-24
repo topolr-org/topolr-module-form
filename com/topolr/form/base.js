@@ -209,7 +209,7 @@ Module({
             reg:"",
             errorMsg:""
         },
-        length:{
+        lengths:{
             max:40,
             min:1,
             errorMsg:""
@@ -235,7 +235,7 @@ Module({
                 }
             }else{
                 r=false;
-                this.showError(this.option.length.errorMsg);
+                this.showError(this.option.lengths.errorMsg);
             }
         }
         if(r===true){
@@ -244,7 +244,7 @@ Module({
         return r;
     },
     checkLength:function () {
-        var val=this.getValue(),max=this.option.length,max,min=this.option.length.min;
+        var val=this.getValue().length,max=this.option.lengths.max,min=this.option.lengths.min;
         return val>=min&&val<=max;
     },
     checkReg:function () {
@@ -321,28 +321,47 @@ Module({
     template:"@form.select",
     className:"form-select",
     autodom:true,
-    services:{"select":"@formservice.selectservice"},
     option:{
         url:"",
         targetName:"",
         parameterName:"",
         parameterVal:"",
         options:[{name:"",value:""}],
-        errorMes:""
+        errorMes:"",
+        autoload:true
     },
     init:function () {
-        this.render(this.option);
-        this.getService("select").action("set",this.option);
+        this.data={
+            value:this.option.value,
+            options:[].concat(this.option.options),
+            desc:this.option.desc,
+            label:this.option.label
+        };
+        this.render(this.data);
+        if(this.option.url&&this.option.autoload){
+            this.getRemoteData();
+        }
     },
     bind_change:function (dom) {
-        this.getService("select").action("setvalue",dom.val());
+        this.data.value=dom.val();
         this.triggerNext();
     },
+    getRemoteData:function (val) {
+        var ths=this;
+        var p={};
+        this.option.parameterVal=val||"";
+        p[this.option.parameterName]=this.option.parameterVal;
+        this.postRequest(this.option.url,p).then(function (data) {
+            ths.data.options=this.option.options.concat(data);
+            ths.update(ths.data);
+        });
+    },
     setValue:function (val) {
-        this.getService("select").action("resetvalue",val);
+        this.data.value=val;
+        this.update(this.data);
     },
     getValue:function () {
-        return this.getService("select").action("getvalue");
+        return this.data.value;
     },
     check:function () {
         if(this.isRequired()){
@@ -358,34 +377,24 @@ Module({
         }
     },
     reset:function () {
-        this.getService("select").action("resetvalue",this.option.value);
     },
     clear:function () {
-        this.getService("select").action("resetvalue","");
     },
     disabled:function () {},
     undisabled:function () {},
     showError:function () {},
     hideError:function () {},
-    service_reset:function (data) {
-        if(data){
-            this.update(data);
-        }
-    },
     triggerNext:function () {
         var targetName=this.option.targetName;
         if(targetName!==this.getName()&&this.parentView&&this.parentView.typeOf&&this.parentView.typeOf("@.form")){
             var a=this.parentView.getFieldByName(targetName);
             if(a){
-                a.updateSelect&&a.updateSelect(this.getValue());
+                a.getRemoteData&&a.getRemoteData(this.getValue());
             }
         }
     },
-    updateSelect:function (val) {
-        this.getService("select").trigger("refresh",val);
-    },
     onupdated:function () {
-        this.getService("select").action("setvalue",this.finders("select").val());
+        this.data.value=this.finders("select").val();
         this.triggerNext();
     }
 });

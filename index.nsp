@@ -30,11 +30,11 @@
                 "util.images": "03911758e8",
                 "util.router": "3c3afc23f8",
                 "util.uikit": "1bd99ab1fb",
-                "form.base": "b5cc1bcbbc",
-                "form.file": "caf04f09c1",
-                "form.image": "7f691c7b4c",
-                "form.service.formservice": "0bcbe56a04",
-                "form.test": "460f8708e1"
+                "form.base": "8682109c8f",
+                "form.file": "70ab423b9d",
+                "form.image": "10f59527b2",
+                "form.service.formservice": "04bc5b56bf",
+                "form.test": "9fc49e1923"
             },
             "c": {
                 "util.style.images": "80c5adaef4",
@@ -46,7 +46,7 @@
             "t": {
                 "util.template.imagestemp": "7a615cee41",
                 "form.template.filetemp": "473618950b",
-                "form.template.form": "d5feb20373",
+                "form.template.form": "78c0507351",
                 "form.template.imagetemp": "d900e56527"
             }
         },
@@ -80,7 +80,7 @@
                 ]
             }
         },
-        "id": "9bcc62893090cf71a77c66d3564a0621"
+        "id": "2ce770f29b0ac61ea4b46c9ad25aab5f"
     }
 }).boot(true);
     </script>
