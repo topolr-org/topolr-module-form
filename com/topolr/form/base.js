@@ -289,6 +289,14 @@ Module({
     }
 });
 Module({
+    name:"hidetext",
+    extend:"@.text",
+    init:function () {
+        this.dom.hide();
+        this.render(this.option);
+    }
+});
+Module({
     name:"textarea",
     extend:"@.text",
     template:"@form.textarea",

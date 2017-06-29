@@ -13,36 +13,37 @@ Option({
                     option:{
                         fields:[
                             {type:"@base.text",option:"@.text"},
-                            {type:"@base.test",option:{
-                                name:"text3",
-                                label:"text3"
-                            }},
-                            {type:"@base.text",option:{
-                                name:"text2",
-                                label:"text2"
-                            }},
-                            {type:"@base.textarea",option:{
-                                name:"text4",
-                                label:"text4"
-                            }},
-                            {type:"@base.select",option:{
-                                name:"text5",
-                                label:"text5",
-                                url:sitePath+"mock/select",
-                                target:"text6",
-                                parameterName:"next",
-                                options:[
-                                    {name:"aa",value:"aa"},
-                                    {name:"ee",value:"ee"}
-                                ]
-                            }},
-                            {type:"@base.select",option:{
-                                name:"text6",
-                                label:"text6",
-                                parameterName:"next",
-                                url:sitePath+"mock/select",
-                                options:[]
-                            }},
+                            {type:"@base.hidetext",option:"@.text"},
+                            // {type:"@base.test",option:{
+                            //     name:"text3",
+                            //     label:"text3"
+                            // }},
+                            // {type:"@base.text",option:{
+                            //     name:"text2",
+                            //     label:"text2"
+                            // }},
+                            // {type:"@base.textarea",option:{
+                            //     name:"text4",
+                            //     label:"text4"
+                            // }},
+                            // {type:"@base.select",option:{
+                            //     name:"text5",
+                            //     label:"text5",
+                            //     url:sitePath+"mock/select",
+                            //     target:"text6",
+                            //     parameterName:"next",
+                            //     options:[
+                            //         {name:"aa",value:"aa"},
+                            //         {name:"ee",value:"ee"}
+                            //     ]
+                            // }},
+                            // {type:"@base.select",option:{
+                            //     name:"text6",
+                            //     label:"text6",
+                            //     parameterName:"next",
+                            //     url:sitePath+"mock/select",
+                            //     options:[]
+                            // }},
                             {type:"@base.checkbox",option:{
                                 name:"text6",
                                 label:"text6",
@@ -65,10 +66,10 @@ Option({
                                     {name:"aa",value:"aa"}
                                 ]
                             }},
-                            {type:"@image.imageuploader",option:{
-                                name:"text7",
-                                label:"text7"
-                            }}
+                            // {type:"@image.imageuploader",option:{
+                            //     name:"text7",
+                            //     label:"text7"
+                            // }}
                         ]
                     },
                     container:this.finders("container")
@@ -113,6 +114,7 @@ Option({
     option:{
         label:"text-text",
         desc:"just for test",
-        name:"text1"
+        name:"text1",
+        disabled:true
     }
 });
