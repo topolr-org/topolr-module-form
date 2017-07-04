@@ -256,7 +256,7 @@ Module({
                 reg=this.option.regular.reg;
             }
             if(reg){
-                return reg.text(this.getValue());
+                return reg.test(this.getValue());
             }else{
                 return true;
             }
