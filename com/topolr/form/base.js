@@ -346,9 +346,11 @@ Module({
             label:this.option.label
         };
         this.render(this.data);
+        this.data.value=this.finders("select").val();
         if(this.option.url&&this.option.autoload){
             this.getRemoteData();
         }
+        this.dispatchEvent("change",this.data.value);
     },
     bind_change:function (dom) {
         this.data.value=dom.val();

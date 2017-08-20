@@ -1,6 +1,6 @@
 {
   "name": "topolr-module-form",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "form module of topolr",
   "main": "index.js",
   "scripts": {

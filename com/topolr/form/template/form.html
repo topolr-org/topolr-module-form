@@ -4,7 +4,7 @@
     <input type="<%=data.inputType;%>" value="<%=data.value;%>" placeholder="<%=data.placeHolder;%>" data-find="input"<%=(data.disabled?" disabled='true'":"");%>/>
 </div>
 <%if(data.desc){%>
-    <div class="form-text-desc"><%=data.desc;%></div>
+<div class="form-text-desc"><%=data.desc;%></div>
 <%}%>
 <div class="form-text-errortip" data-find="tip"></div>
 <!--[form]-->
@@ -28,11 +28,11 @@
 <div class="form-select-input">
     <select data-find="select" data-bind="change:change">
         {{list data.options as item}}
-            {{if item.value===data.value}}
-            <option value="{{item.value}}" selected="true">{{item.name}}</option>
-            {{else}}
-            <option value="{{item.value}}">{{item.name}}</option>
-            {{/if}}
+        {{if item.value===data.value}}
+        <option value="{{item.value}}" selected="true">{{item.name}}</option>
+        {{else}}
+        <option value="{{item.value}}">{{item.name}}</option>
+        {{/if}}
         {{/list}}
     </select>
 </div>
