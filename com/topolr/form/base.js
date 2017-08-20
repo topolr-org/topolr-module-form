@@ -393,6 +393,7 @@ Module({
     showError:function () {},
     hideError:function () {},
     triggerNext:function () {
+        this.dispatchEvent("change",this.data.value);
         var targetName=this.option.targetName;
         if(targetName!==this.getName()&&this.parentView&&this.parentView.typeOf&&this.parentView.typeOf("@.form")){
             var a=this.parentView.getFieldByName(targetName);
