@@ -15,6 +15,14 @@
     height:30px;
     width:100%;
     outline: none;
+    transition:all ease-out .3s;
+    font-size: 12px;
+    &:focus{
+        border-bottom:1px solid #407FFF;
+    }
+    &:disabled{
+        background:#FCFAFA;
+    }
 }
 @mixin errortip{
     line-height:25px;
@@ -54,9 +62,13 @@
         @include label;
     }
     .form-textarea-input{
-        textarea {
+        .textarea {
             @include input;
-            min-height:100px;
+            -webkit-user-modify: read-write-plaintext-only;
+            min-height:30px;
+            height:auto;
+            font-size: 12px;
+            padding:5px 0 5px 0;
         }
     }
     .form-textarea-num{

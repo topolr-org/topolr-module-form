@@ -115,6 +115,6 @@ Option({
         label:"text-text",
         desc:"just for test",
         name:"text1",
-        disabled:true
+        disabled:false
     }
 });

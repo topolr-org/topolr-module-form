@@ -342,6 +342,9 @@ Module({
             num: this.getValue().length || 0
         }));
         this.check();
+    },
+    getValue:function () {
+        return this.finders("input").text();
     }
 });
 Module({

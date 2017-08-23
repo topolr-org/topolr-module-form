@@ -14,7 +14,7 @@
 <!--[textarea]-->
 <div class="form-textarea-label"><%=data.label;%></div>
 <div class="form-textarea-input">
-    <textarea placeholder="<%=data.placeHolder;%>" data-find="input" data-bind="input:change"><%=data.value;%></textarea>
+    <div class="textarea" placeholder="<%=data.placeHolder;%>" data-find="input" data-bind="input:change"><%=data.value;%></div>
 </div>
 <%if(data.showNum){%>
 <div class="form-textarea-num"><%=data.num;%>/<%=data.max;%></div>
