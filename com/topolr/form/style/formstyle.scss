@@ -50,10 +50,6 @@
         .form-text-errortip{
             display: block;
         }
-        .form-textarea-errortip{
-            display: block;
-            margin-top:-20px;
-        }
     }
 }
 .form-textarea{
@@ -83,8 +79,12 @@
         @include errortip;
     }
     &.form-error{
-        .form-text-errortip{
+        .form-textarea-num{
+            color:palevioletred;
+        }
+        .form-textarea-errortip{
             display: block;
+            margin-top:-19px;
         }
     }
 }
