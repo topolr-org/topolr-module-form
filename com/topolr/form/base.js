@@ -346,6 +346,10 @@ Module({
         }));
         this.check();
     },
+    setValue:function (val) {
+        this.finders("input").text(val);
+        return this;
+    },
     getValue:function () {
         return this.finders("input").text();
     },
