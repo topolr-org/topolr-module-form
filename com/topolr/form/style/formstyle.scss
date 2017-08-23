@@ -17,11 +17,12 @@
     outline: none;
     transition:all ease-out .3s;
     font-size: 12px;
+    background:white;
     &:focus{
         border-bottom:1px solid #407FFF;
     }
     &:disabled{
-        background:#FCFAFA;
+        border-bottom:1px dotted #ece6e6;
     }
 }
 @mixin errortip{
@@ -87,6 +88,14 @@
             margin-top:-19px;
         }
     }
+    &.form-disable{
+        .form-textarea-input {
+            .textarea {
+                border-bottom:1px dotted #ece6e6;
+                -webkit-user-modify:read-only;
+            }
+        }
+    }
 }
 .form-select{
     margin-bottom: 10px;
@@ -110,7 +119,7 @@
         @include errortip;
     }
     &.form-error{
-        .form-text-errortip{
+        .form-select-errortip{
             display: block;
         }
     }

@@ -7,6 +7,7 @@ Option({
     name:"boot",
     option:{
         override:{
+            layout:"[content]",
             onendinit:function () {
                 this.addChild({
                     type:"@base.form",
@@ -24,19 +25,21 @@ Option({
                             // }},
                             {type:"@base.textarea",option:{
                                 name:"text4",
-                                label:"text4"
+                                label:"text4",
+                                disabled:true
                             }},
-                            // {type:"@base.select",option:{
-                            //     name:"text5",
-                            //     label:"text5",
-                            //     url:sitePath+"mock/select",
-                            //     target:"text6",
-                            //     parameterName:"next",
-                            //     options:[
-                            //         {name:"aa",value:"aa"},
-                            //         {name:"ee",value:"ee"}
-                            //     ]
-                            // }},
+                            {type:"@base.select",option:{
+                                name:"text5",
+                                label:"text5",
+                                url:sitePath+"mock/select",
+                                target:"text6",
+                                parameterName:"next",
+                                disabled:true,
+                                options:[
+                                    {name:"aa",value:"aa"},
+                                    {name:"ee",value:"ee"}
+                                ]
+                            }},
                             // {type:"@base.select",option:{
                             //     name:"text6",
                             //     label:"text6",
@@ -115,6 +118,6 @@ Option({
         label:"text-text",
         desc:"just for test",
         name:"text1",
-        disabled:false
+        disabled:true
     }
 });

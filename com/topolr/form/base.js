@@ -330,6 +330,9 @@ Module({
         resizeable: false
     },
     init: function () {
+        if(this.option.disabled){
+            this.dom.addClass("form-disable");
+        }
         this._data = $.extend({
             max: this.option.lengths.max,
             num: this.option.value ? this.option.value.length : 0
@@ -345,6 +348,14 @@ Module({
     },
     getValue:function () {
         return this.finders("input").text();
+    },
+    disabled: function () {
+        this.dom.addClass("form-disable");
+        return this;
+    },
+    undisabled: function () {
+        this.dom.removeClass("form-disable");
+        return this;
     }
 });
 Module({
@@ -373,6 +384,9 @@ Module({
         this.data.value = this.finders("select").val();
         if (this.option.url && this.option.autoload) {
             this.getRemoteData();
+        }
+        if(this.option.disabled){
+            this.disabled();
         }
         this.dispatchEvent("change", this.data.value);
     },
@@ -415,12 +429,10 @@ Module({
     clear: function () {
     },
     disabled: function () {
+        this.finders("select").get(0).disabled=true;
     },
     undisabled: function () {
-    },
-    showError: function () {
-    },
-    hideError: function () {
+        this.finders("select").get(0).disabled=false;
     },
     triggerNext: function () {
         this.dispatchEvent("change", this.data.value);
