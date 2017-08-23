@@ -22,10 +22,10 @@ Option({
                             //     name:"text2",
                             //     label:"text2"
                             // }},
-                            // {type:"@base.textarea",option:{
-                            //     name:"text4",
-                            //     label:"text4"
-                            // }},
+                            {type:"@base.textarea",option:{
+                                name:"text4",
+                                label:"text4"
+                            }},
                             // {type:"@base.select",option:{
                             //     name:"text5",
                             //     label:"text5",
