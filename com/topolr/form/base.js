@@ -348,6 +348,10 @@ Module({
     },
     setValue:function (val) {
         this.finders("input").text(val);
+        this.update($.extend(this._data, {
+            max: this.option.lengths.max,
+            num: this.getValue().length || 0
+        }));
         return this;
     },
     getValue:function () {
