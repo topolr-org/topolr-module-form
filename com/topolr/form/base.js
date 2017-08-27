@@ -390,6 +390,7 @@ Module({
         };
         this.render(this.data);
         this.data.value = this.finders("select").val();
+        this._isdone=true;
         if (this.option.url && this.option.autoload) {
             this.getRemoteData();
         }
@@ -400,6 +401,7 @@ Module({
     },
     bind_change: function (dom) {
         this.data.value = dom.val();
+        this.dispatchEvent("change", this.data.value);
         this.triggerNext();
     },
     getRemoteData: function (val) {
@@ -407,29 +409,34 @@ Module({
         var p = {};
         this.option.parameterVal = val || "";
         p[this.option.parameterName] = this.option.parameterVal;
+        ths._isdone=false;
         this.postRequest(this.option.url, p).then(function (data) {
+            ths._isdone=true;
             ths.data.options = this.option.options.concat(data);
             ths.update(ths.data);
         });
     },
     setValue: function (val) {
         this.data.value = val;
-        this.update(this.data);
+        if(this._isdone){
+            this.finders("select").val(val);
+        }
     },
     getValue: function () {
         return this.data.value;
     },
     check: function () {
-        if (this.isRequired()) {
-            var e = this.getValue();
-            if (e) {
-                this.hideError();
-                return true;
-            } else {
-                this.showError(this.option.errorMes);
-            }
-        } else {
+        var e = this.getValue();
+        if (e) {
+            this.hideError();
             return true;
+        } else {
+            if (this.isRequired()) {
+                this.showError(this.option.errorMes);
+                return false;
+            } else {
+                return true;
+            }
         }
     },
     reset: function () {
@@ -443,7 +450,6 @@ Module({
         this.finders("select").get(0).disabled=false;
     },
     triggerNext: function () {
-        this.dispatchEvent("change", this.data.value);
         var targetName = this.option.targetName;
         if (targetName !== this.getName() && this.parentView && this.parentView.typeOf && this.parentView.typeOf("@.form")) {
             var a = this.parentView.getFieldByName(targetName);
@@ -453,7 +459,7 @@ Module({
         }
     },
     onupdated: function () {
-        this.data.value = this.finders("select").val();
+        this.data.value=this.finders("select").val();
         this.triggerNext();
     }
 });
