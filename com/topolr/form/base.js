@@ -89,20 +89,22 @@ Module({
             ps.resolve(r);
         });
         for (var i = 0; i < fields.length; i++) {
-            queue.add(function (a, b) {
-                var val = b.getValue(), ths = this;
-                if (val.then && val.done) {
-                    val.then(function (_val) {
-                        r[b.getName()] = _val;
+            if(fields[i].typeOf&&fields[i].typeOf("@.field")) {
+                queue.add(function (a, b) {
+                    var val = b.getValue(), ths = this;
+                    if (val.then && val.done) {
+                        val.then(function (_val) {
+                            r[b.getName()] = _val;
+                            ths.next();
+                        });
+                    } else {
+                        r[b.getName()] = val;
                         ths.next();
-                    });
-                } else {
-                    r[b.getName()] = val;
-                    ths.next();
-                }
-            }, function () {
-                this.next();
-            }, fields[i]);
+                    }
+                }, function () {
+                    this.next();
+                }, fields[i]);
+            }
         }
         queue.run();
         return ps;
@@ -111,9 +113,11 @@ Module({
         var fields = this.getAllFiles();
         for (var i = 0; i < fields.length; i++) {
             var field = fields[i];
-            var val = vals[field.getName()];
-            if (val !== undefined) {
-                field.setValue(val);
+            if(field.typeOf&&field.typeOf("@.field")) {
+                var val = vals[field.getName()];
+                if (val !== undefined) {
+                    field.setValue(val);
+                }
             }
         }
         return this;
@@ -129,24 +133,26 @@ Module({
             }
         });
         for (var i = 0; i < fields.length; i++) {
-            queue.add(function (a, b) {
-                var a = b.check(), ths = this;
-                if (a.then && a.done) {
-                    a.then(function () {
-                        ths.next();
-                    }, function () {
+            if(fields[i].typeOf&&fields[i].typeOf("@.field")) {
+                queue.add(function (a, b) {
+                    var a = b.check(), ths = this;
+                    if (a.then && a.done) {
+                        a.then(function () {
+                            ths.next();
+                        }, function () {
+                            r = false;
+                            ths.end();
+                        })
+                    } else if (a === false) {
                         r = false;
                         ths.end();
-                    })
-                } else if (a === false) {
-                    r = false;
-                    ths.end();
-                } else {
-                    ths.next();
-                }
-            }, function () {
-                this.next();
-            }, fields[i]);
+                    } else {
+                        ths.next();
+                    }
+                }, function () {
+                    this.next();
+                }, fields[i]);
+            }
         }
         queue.run();
         return ps;
@@ -154,28 +160,36 @@ Module({
     reset: function () {
         var fields = this.getAllFiles();
         for (var i = 0; i < fields.length; i++) {
-            fields[i].reset();
+            if(fields[i].typeOf&&fields[i].typeOf("@.field")) {
+                fields[i].reset();
+            }
         }
         return this;
     },
     clear: function () {
         var fields = this.getAllFiles();
         for (var i = 0; i < fields.length; i++) {
-            fields[i].clear();
+            if(fields[i].typeOf&&fields[i].typeOf("@.field")) {
+                fields[i].clear();
+            }
         }
         return this;
     },
     disabled: function () {
         var fields = this.getAllFiles();
         for (var i = 0; i < fields.length; i++) {
-            fields[i].disabled();
+            if(fields[i].typeOf&&fields[i].typeOf("@.field")) {
+                fields[i].disabled();
+            }
         }
         return this;
     },
     undisabled: function () {
         var fields = this.getAllFiles();
         for (var i = 0; i < fields.length; i++) {
-            fields[i].undisabled();
+            if(fields[i].typeOf&&fields[i].typeOf("@.field")) {
+                fields[i].undisabled();
+            }
         }
         return this;
     },
